@@ -4,7 +4,7 @@
 
 restful 是几年前刮起的 API 设计风潮，在 restful 中除了 GET 和 POST 之外，还使用了 http 协议定义的几种其它的标准化语义。具体包括：
 
-```shell
+```go
 const (
     MethodGet     = "GET"
     MethodHead    = "HEAD"
@@ -231,4 +231,4 @@ indices: 子节点索引，当子节点为非参数类型，即本节点的 wild
 4. 在插入 static 节点时，父节点的 wildChild 字段被设置为 true。
 5. 在插入 static 节点时，父节点的 children 非空，且子节点 nType 为 catchAll。
 
-只要发生冲突，都会在初始化的时候 panic。
+只要发生冲突，都会在初始化的时候 panic。例如，在插入我们臆想的路由`GET /marketplace_listing/plans/ohyes`时，出现第4种冲突情况：它的父节点`marketplace_listing/plans/`的 wildChild 字段为 true。
